@@ -66,22 +66,10 @@
 						<h3>Разделы</h3>
 					</div>
 					<div id="items">
-													<p >
-								<a href="https://storedvd.ru/section?id=1">Комедии</a>
-							</p>
-													<p >
-								<a href="https://storedvd.ru/section?id=2">Исторические</a>
-							</p>
-													<p >
-								<a href="https://storedvd.ru/section?id=3">Мелодрамы</a>
-							</p>
-													<p >
-								<a href="https://storedvd.ru/section?id=4">Триллеры</a>
-							</p>
-													<p class="last">
-								<a href="https://storedvd.ru/section?id=5">Боевики</a>
-							</p>
-											</div>
+						{% for section in sections %}
+						<p><a href="#">{{ section }}</a></p>
+						{% endfor %}
+					</div>
 					<div class="bottom"></div>
 				</div>
 			</div>
