@@ -21,8 +21,8 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shop/', include('storedvd.urls')),
-    path('', RedirectView.as_view(url='/shop/', permanent=True)),
+    path('store/', include('storedvd.urls')),
+    path('', RedirectView.as_view(url='/store/', permanent=True)),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
