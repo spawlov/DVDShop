@@ -1,5 +1,49 @@
 {% extends 'main.html' %}
 
+{% block title %}DVD Store{% endblock %}
 {% block content %}
-<p>Это главная страница</p>
+    <table>
+        <tr>
+            <td rowspan="2">
+                <div class="header">
+                    {% block header %}<h3>Каталог</h3>{% endblock %}
+                </div>
+            </td>
+            <td class="section_bg"></td>
+            <td class="section_right"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table class="sort">
+                    <tr>
+                        <td>Сортировать по:</td>
+                        <td>цене (<a href="#">возр.</a> | <a href="#">убыв.</a>)</td>
+                        <td>названию (<a href="#">возр.</a> | <a href="#">убыв.</a>)</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="products">
+        {% for product in products %}
+            {% cycle '<tr>' '' '' '' %}
+                <td>
+                    <div class="intro_product">
+                        <p class="img">
+                            <img src="{{ MEDIA_URL }}{{ product.image.url }}" alt="{{ product.title }}">
+                        </p>
+                        <p class="title">
+                            <a href="#">{{ product.title }}</a>
+                        </p>
+                        <p class="price">
+                            {{ product.price }}
+                        </p>
+                        <p>
+                            <a class="link_cart" href="#"></a>
+                        </p>
+                    </div>
+                </td>
+            {% cycle '' '' '' '</tr>' %}
+        {% endfor %}
+    </table>
 {% endblock %}
