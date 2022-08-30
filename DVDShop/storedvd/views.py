@@ -26,3 +26,7 @@ def index(request):
 
 def delivery(request):
     return render(request, 'delivery.html')
+
+
+def contacts(request):
+    return render(request, 'contacts.html')
