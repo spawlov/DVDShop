@@ -17,10 +17,12 @@ def sorted_title_or_price(request):
 
 
 def index(request):
-    sections = Section.objects.order_by('title').all()
     products = Product.objects.order_by(sorted_title_or_price(request)).all()[:8]
     context = {
-        'sections': sections,
         'products': products,
     }
     return render(request, 'index.html', context=context)
+
+
+def delivery(request):
+    return render(request, 'delivery.html')
