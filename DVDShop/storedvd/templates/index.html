@@ -27,22 +27,7 @@
     <table class="products">
         {% for product in products %}
             {% cycle '<tr>' '' '' '' %}
-                <td>
-                    <div class="intro_product">
-                        <p class="img">
-                            <img src="{{ MEDIA_URL }}{{ product.image.url }}" alt="{{ product.title }}">
-                        </p>
-                        <p class="title">
-                            <a href="#">{{ product.title }}</a>
-                        </p>
-                        <p class="price">
-                            {{ product.price }}
-                        </p>
-                        <p>
-                            <a class="link_cart" href="#"></a>
-                        </p>
-                    </div>
-                </td>
+                {% include 'product.html' %}
             {% if forloop.last %}
                 </tr>
             {% else %}

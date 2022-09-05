@@ -1,0 +1,72 @@
+{% extends 'main.html' %}
+{% block description %}<meta name="description" content="{{ product.title }} Интернет-магазин" />{% endblock %}
+{% block keywords %}
+    <meta name="keywords" content="интернет магазин, интернет магазин dvd, интернет магазин dvd диски, {{ product.title }}" />
+{% endblock %}
+{% block title %}{{ product.title }}{% endblock %}
+{% block content %}
+    <table id="hornav">
+        <tr>
+            {% load static %}
+            <td>
+                <a href="{% url 'storedvd:index' %}">Главная</a>
+            </td>
+            <td>
+                <img src="{% static 'images/hornav_arrow.png' %}" alt="">
+            </td>
+            <td>
+                <a href="{{ product.section.get_absolute_url }}">{{ product.section.title }}</a>
+            </td>
+            <td>
+                <img src="{% static 'images/hornav_arrow.png' %}" alt="">
+            </td>
+            <td>
+                {{ product.title }}
+            </td>
+        </tr>
+    </table>
+    <table id="product">
+        <tr>
+            <td class="product_img">
+                <img src="{{ product.image.url }}" alt="{{ product.title }}">
+            </td>
+            <td class="product_desc">
+                <p>Название: <span class="title">{{ product.title }}</span></p>
+                <p>Год выхода: <span class="title">{{ product.year }}</span></p>
+                <p>Жанр: <span class="title">{{ product.section.title }}</span></p>
+                <p>Страна-производитель: <span class="title">{{ product.country }}</span></p>
+                <p>Режиссёр: <span class="title">{{ product.director }}</span></p>
+                <p>Продолжительность: <span class="title">{{ product.play }}</span></p>
+                <p>В ролях: <span class="title">{{ product.casts }}</span></p>
+                <table>
+                    <tr>
+                        <td>
+                            <p class="price">{{ product.price }}</p>
+                        </td>
+                        <td>
+                            <p>
+                                <a class="link_cart" href="#"></a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p class="desc_title">Описание:</p>
+                <p class="desc">{{ product.description|linebreaksbr }}</p>
+            </td>
+        </tr>
+    </table>
+    <div id="others">
+        <h3>С этим товаром часто заказывают:</h3>
+        <table class="products">
+            <tr>
+                {% for other_product in products %}
+                    {% include 'product.html' with product=other_product %}
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+{% endblock %}
