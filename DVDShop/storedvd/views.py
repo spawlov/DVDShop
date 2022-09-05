@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.template import context
 from django.views.generic import ListView
 
@@ -30,3 +30,15 @@ def delivery(request):
 
 def contacts(request):
     return render(request, 'contacts.html')
+
+
+def section(request, id):
+    obj = get_object_or_404(Section, pk=id)
+    products = Product.objects.filter(section__exact=obj).order_by(
+        sorted_title_or_price(request)
+    )
+    context = {
+        'section': obj,
+        'products': products,
+    }
+    return render(request, 'section.html', context=context)

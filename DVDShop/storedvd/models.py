@@ -2,6 +2,7 @@ import datetime
 
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.urls import reverse
 
 
 class Section(models.Model):
@@ -16,6 +17,9 @@ class Section(models.Model):
         ordering = ['id']
         verbose_name = 'Раздел'
         verbose_name_plural = 'Разделы'
+
+    def get_absolute_url(self):
+        return reverse('storedvd:section', args=[self.id])
 
     def __str__(self):
         return self.title

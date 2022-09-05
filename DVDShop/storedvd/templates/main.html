@@ -67,7 +67,7 @@
 					</div>
 					<div id="items">
 						{% for section in sections %}
-						<p><a href="#">{{ section }}</a></p>
+						<p><a href="{{ section.get_absolute_url }}">{{ section }}</a></p>
 						{% endfor %}
 					</div>
 					<div class="bottom"></div>
